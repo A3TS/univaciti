@@ -1,11 +1,20 @@
-name: CI/CD Pipeline
-on: push
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Install dependencies
-        run: yarn install request
-      - name: Run test
-        run: yarn test
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+    - run: npm install
+    - run: npm test
