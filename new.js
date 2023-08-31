@@ -1,11 +1,11 @@
-const request = require('request');
+const axios = require('axios');
 
 const url = 'https://pokeapi.co/api/v2/pokemon/ditto';
 
-request(url, (error, response, body) => {
-  if (error) {
+axios.get(url)
+  .then(response => {
+    console.log(response.status);
+  })
+  .catch(error => {
     console.error(error);
-  } else {
-    console.log(response.statusCode);
-  }
-});
+  });
