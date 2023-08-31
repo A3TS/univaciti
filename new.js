@@ -1,10 +1,12 @@
-const axios = require('axios');
+const fetch = require('node-fetch');
 
-const url = 'https://pokeapi.co/api/v2/pokemon/ditto';
-
-axios.get(url)
+fetch('https://pokeapi.co/api/v2/pokemon/ditto')
   .then(response => {
-    console.log(response.status);
+    if (response.status === 200) {
+      console.log('Correct status code (200)');
+    } else {
+      console.log(`Incorrect status code (${response.status})`);
+    }
   })
   .catch(error => {
     console.error(error);
