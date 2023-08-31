@@ -1,29 +1,11 @@
-name: PokeAPI Test
-
-on:
-  push:
-    branches:
-      - main
-
+name: CI/CD Pipeline
+on: push
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
+      - uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm install
-
-      - name: Run API Test
-        run: |
-          npm test
-        env:
-          API_URL: https://pokeapi.co/api/v2/pokemon/ditto
-
+        run: yarn install
+      - name: Run test
+        run: yarn test
